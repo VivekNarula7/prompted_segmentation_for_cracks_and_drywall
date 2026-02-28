@@ -1,5 +1,4 @@
 
----
 
 # Prompted Segmentation for Drywall & Cracks
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
@@ -129,7 +128,6 @@ The model generates high-fidelity probability heatmaps that align closely with a
 For a detailed technical breakdown of the methodology and experimental setup please refer to the full project report: [Report](./assets/Report.pdf)
 
 ---
-
 ## References
 
 * **CLIPSeg:** [Image Segmentation Using Text and Image Prompts](https://arxiv.org/abs/2112.10003) 
