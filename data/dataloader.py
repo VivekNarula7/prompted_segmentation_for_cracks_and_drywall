@@ -1,6 +1,5 @@
 import os
 import cv2
-import torch
 from torch.utils.data import Dataset
 import random
 
@@ -71,14 +70,5 @@ test_dataset = DrywallCrackDataset(image_dir="cracks/test", mask_dir="cracks_mas
 
 taping_train = DrywallTapingDataset(image_dir="Drywall-Join-Detect/train", mask_dir="drywall_join_detect_mask/train")
 taping_val = DrywallTapingDataset(image_dir="Drywall-Join-Detect/valid", mask_dir="drywall_join_detect_mask/val")
-
-
-
-# Sanity Check
-# img, mask, prompt = train_dataset[0]
-
-# print(f"Loaded Prompt: {prompt}")
-# print(f"Image shape: {img.shape}")
-# print(f"Mask shape: {mask.shape}")
 
 
