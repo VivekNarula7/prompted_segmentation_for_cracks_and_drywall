@@ -13,8 +13,8 @@ from utils.metrics import calculate_metrics
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Device being used : {DEVICE}")
 BASE_MODEL_ID = "CIDAS/clipseg-rd64-refined"
-LORA_ADAPTER_PATH = "models/joint_lora_clipseg"
-FULL_FT_MODEL_PATH = "models/fine_tuned_clipseg_cracks"
+LORA_ADAPTER_PATH = "data/joint_lora_clipseg"
+FULL_FT_MODEL_PATH = "data/fine_tuned_clipseg_cracks"
 THRESHOLDS = [0.3, 0.4, 0.5, 0.6, 0.7]
 
 def clean_binary_mask(mask_tensor, kernel_size=3):

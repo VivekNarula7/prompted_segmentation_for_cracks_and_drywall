@@ -100,7 +100,7 @@ for epoch in range(epochs):
 
     scheduler.step()
 
-save_path = "models/joint_lora_clipseg"
+save_path = "data/joint_lora_clipseg"
 print(f"Saving fine-tuned model to {save_path}...")
 model.save_pretrained(save_path)
 processor.save_pretrained(save_path)
