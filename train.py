@@ -10,27 +10,6 @@ import csv
 import os
 from data.dataloader import DrywallCrackDataset, DrywallTapingDataset
 
-class FocalDiceLoss(nn.Module):
-    def __init__(self, alpha=0.25, gamma=2.0):
-        super().__init__()
-        self.alpha = alpha
-        self.gamma = gamma
-        self.bce = nn.BCEWithLogitsLoss(reduction='none') 
-
-    def forward(self, logits, targets, smooth=1e-6):
-        bce_loss = self.bce(logits, targets)
-        probs = torch.sigmoid(logits)
-        p_t = probs * targets + (1 - probs) * (1 - targets)
-        focal_weight = (self.alpha * targets + (1 - self.alpha) * (1 - targets)) * (1 - p_t) ** self.gamma
-        focal_loss = (focal_weight * bce_loss).mean()
-        probs_flat = probs.view(-1)
-        targets_flat = targets.view(-1)
-        intersection = (probs_flat * targets_flat).sum()
-        union = probs_flat.sum() + targets_flat.sum()
-        dice_score = (2. * intersection + smooth) / (union + smooth)
-        dice_loss = 1.0 - dice_score
-        return focal_loss + dice_loss
-
 class BCEDiceLoss(nn.Module):
     def __init__(self):
         super().__init__()
@@ -121,7 +100,6 @@ for epoch in range(epochs):
 
     scheduler.step()
 
-# save_path = "models/fine_tuned_clipseg_cracks_focal_dice" 
 save_path = "models/joint_lora_clipseg"
 print(f"Saving fine-tuned model to {save_path}...")
 model.save_pretrained(save_path)
